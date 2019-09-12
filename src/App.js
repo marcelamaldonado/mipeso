@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import BarraTitulo from "./componentes/BarraTitulo";
-import Highcharts, { dateFormat } from 'highcharts'
-import moment from "moment"
-import Grafica from './componentes/Grafica'
+import Highcharts, { dateFormat } from 'highcharts';
+import moment from "moment";
+import Grafica from './componentes/Grafica';
+import Tabla from "./componentes/Tabla";
 
 moment.locale('es')
 class App extends Component {
@@ -15,14 +16,7 @@ class App extends Component {
       //cuando el componente se monta en el DOM se ejecuta este metodo
   }
   
-  renderFila = (registro) => {
-    return (
-      <tr key={registro[0]}>
-        <td>{moment(registro[0]).format('LLLL')}</td>
-        <td>{registro[1]}</td>
-      </tr>
-    )
-  }
+  
   render() {
     return (
       <div>
@@ -33,24 +27,10 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col s6">
-              <Grafica registros{this.state.registros}/>
+              <Grafica registros = {this.state.registros}/>
             </div>
             <div className="col s6">
-              <table className="z-depth-2 hoverable">
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Peso (Lbs)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    this.state.registros.map(registro => (
-                      this.renderFila(registro)
-                    ))
-                  }
-                </tbody>
-              </table>
+              <Tabla registros = {this.state.registros}/>
             </div>
 
           </div>

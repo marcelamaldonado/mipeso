@@ -7,7 +7,7 @@ class Grafica extends React.Component {
         this.iniciarGrafica(this.props.registros)
     }
     iniciarGrafica = (registros) => {
-        Highcharts.chart('grafico', {
+        Highcharts.chart("grafica", {
             title: {
                 text: "Mi Registro de Peso"
             },
