@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BarraTitulo from "./componentes/BarraTitulo";
 import Highcharts, { dateFormat } from 'highcharts'
 import moment from "moment"
+import Grafica from './componentes/Grafica'
 
 moment.locale('es')
 class App extends Component {
@@ -11,24 +12,9 @@ class App extends Component {
     )
   }
   componentDidMount() {
-    this.initGrafica()    //cuando el componente se monta en el DOM se ejecuta este metodo
+      //cuando el componente se monta en el DOM se ejecuta este metodo
   }
-  initGrafica = () => {
-    Highcharts.chart('grafico', {
-      title: {
-        text: "Mi Registro de Peso"
-      },
-      xAxis: {
-        type: "datetime"
-      },
-      series: [
-        {
-          name: "test",
-          data: this.state.registros
-        }
-      ]
-    });
-  }
+  
   renderFila = (registro) => {
     return (
       <tr key={registro[0]}>
@@ -40,14 +26,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BarraTitulo />
+    <BarraTitulo />
         <main>
           <div className="valign-wrapper">
             <h3>Registro Diario de Peso</h3>
           </div>
           <div className="row">
             <div className="col s6">
-              <div id="grafico" className="z-depth-2 hoverable"></div>
+              <Grafica registros{this.state.registros}/>
             </div>
             <div className="col s6">
               <table className="z-depth-2 hoverable">
