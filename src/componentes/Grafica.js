@@ -6,13 +6,17 @@ class Grafica extends React.Component {
     componentDidMount() {
         this.iniciarGrafica(this.props.registros)
     }
+    componentWillReceiveProps(nextProps) {
+        this.iniciarGrafica(nextProps.registros)
+    }
     iniciarGrafica = (registros) => {
         Highcharts.chart("grafica", {
             title: {
-                text: "Mi Registro de Peso"
+                text: "Peso vs Fecha"
             },
             xAxis: {
-                type: "datetime"
+                type: "datetime",
+                startOnTick:true
             },
             series: [
                 {
