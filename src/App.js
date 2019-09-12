@@ -3,6 +3,7 @@ import BarraTitulo from "./componentes/BarraTitulo"
 import moment from "moment";
 import Grafica from './componentes/Grafica';
 import Tabla from "./componentes/Tabla";
+import Form from "./componentes/Form"
 
 // esto trae una array alaeatorio cada vez qye se carga la pagina
 // [1, 2, 3, 4, 5, 6, 7].map(dia =>
@@ -13,9 +14,7 @@ class App extends Component {
     registros: []
 
   }
-  componentDidMount() {
-      //cuando el componente se monta en el DOM se ejecuta este metodo
-  }
+  
   onCrearRegistro = ()=>{
      const nuevoregistro = [+moment(),Math.random() * 200] 
      this.setState({
@@ -32,6 +31,7 @@ class App extends Component {
     
     return (
       <div>
+      <Form/>
     <BarraTitulo />
         <main>
           <div className="valign-wrapper">
