@@ -55,7 +55,7 @@ class App extends Component {
             <h3>Registro Diario de Peso</h3>
           </div>
           <div className="row">
-            <div className="col l6 m12 s12">
+            <div className="col l6 m12 s12 hoverable">
               <Grafica registros={this.state.registros} />
             </div>
             <div className="col l6 m12 s12">
