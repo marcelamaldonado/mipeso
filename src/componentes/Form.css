@@ -1,6 +1,7 @@
 .form-container {
     position: absolute;
-    top:30%;
+    height: 200px;
+    top:40%;
     z-index: 20;
     padding: 20px;
     font-weight: bold;
