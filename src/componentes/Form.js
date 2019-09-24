@@ -20,7 +20,7 @@ export default class Form extends React.Component {
     onSubmit = () => {
         const { fecha, peso } = this.state;
 
-        if (!peso || peso < 0) {
+        if (!peso || isNaN(peso) || peso < 0) {
             swal('Lectura invalida', 'El registro de peso debe ser valido', 'error')
         } else {
             this.props.onAceptar(this.state)

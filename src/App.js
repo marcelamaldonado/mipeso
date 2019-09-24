@@ -8,14 +8,21 @@ import Form from "./componentes/Form"
 // esto trae una array alaeatorio cada vez qye se carga la pagina
 // [1, 2, 3, 4, 5, 6, 7].map(dia =>
 // [+moment().add(dia, 'days'), Math.random() * 200])
-moment.locale('es')
-
+moment.locale('es');
 class App extends Component {
   state = {
     registros: [],
     modal: false
-
   };
+
+  componentDidMount(){
+    if(localStorage.getItem('registros')){
+      const registros = JSON.parse(localStorage.getItem('registros'))
+      this.setState({
+        registros
+      })
+    }
+  }
   //onCrearRegistro = ()=>{
   //  const nuevoregistro = [+moment(),Math.random() * 200] 
   // this.setState({
@@ -24,16 +31,24 @@ class App extends Component {
   //}
 
   aceptarRegistro = ({ fecha, peso }) => {
-    console.log(fecha, peso)
-    const nuevoregistro = [+fecha, +peso]
-    console.log(nuevoregistro)
-    this.setState((prevState, props) => ({
-      registros: [...prevState.registros, nuevoregistro]
-    }));
+    const nuevoregistro = [+fecha, +peso];
+    console.log(nuevoregistro);
+    const newstateregistros = [...this.state.registros, nuevoregistro]
+    localStorage.setItem('registros', JSON.stringify(newstateregistros))
+    this.setState({
+      registros:newstateregistros
+    });
   };
   onCerrarForm = ()=>{
     this.setState({
       modal:false
+    })
+  }
+
+  reiniciarRegistros=()=>{
+    localStorage.clear()
+    this.setState({
+      registros:[]
     })
   }
 
@@ -57,6 +72,7 @@ class App extends Component {
           <div className="row">
             <div className="col l6 m12 s12 hoverable">
               <Grafica registros={this.state.registros} />
+              <a className="btn" onClick={this.reiniciarRegistros}>Reiniciar Lecturas</a>
             </div>
             <div className="col l6 m12 s12">
               <Tabla registros={this.state.registros} />
